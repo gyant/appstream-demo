@@ -6,27 +6,6 @@ provider "aws" {
   region = "us-west-2"
 }
 
-module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
-
-  name = "appstream-demo"
-  cidr = "10.0.0.0/16"
-
-  azs             = ["us-west-2a", "us-west-2b", "us-west-2c"]
-  private_subnets = ["10.0.0.0/21", "10.0.8.0/21"]
-  public_subnets  = ["10.0.16.0/21"]
-
-  enable_nat_gateway     = true
-  single_nat_gateway     = true
-  one_nat_gateway_per_az = false
-  enable_vpn_gateway     = false
-
-  tags = {
-    Terraform   = "true"
-    Environment = "demo"
-  }
-}
-
 resource "aws_appstream_stack" "demo" {
   name         = "appstream-demo"
   description  = "appstream demon"
