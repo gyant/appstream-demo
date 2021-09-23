@@ -80,6 +80,10 @@ resource "aws_subnet" "private" {
 
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.vpc.id
+ 
+  tags = {
+    Name = "Public"
+  }
 }
 
 resource "aws_route" "public_igw" {
@@ -98,6 +102,10 @@ resource "aws_route" "public_firewall" {
 
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.vpc.id
+  
+  tags = {
+    Name = "Private"
+  }
 }
 
 resource "aws_route" "private_firewall" {
@@ -109,6 +117,10 @@ resource "aws_route" "private_firewall" {
 
 resource "aws_route_table" "firewall" {
   vpc_id = aws_vpc.vpc.id
+ 
+  tags = {
+    Name = "Firewall"
+  }
 }
 
 resource "aws_route" "fw_nat" {
@@ -179,7 +191,7 @@ resource "aws_networkfirewall_rule_group" "allowgmail" {
       rules_source_list {
         generated_rules_type = "ALLOWLIST"
         target_types         = ["HTTP_HOST", "TLS_SNI"]
-        targets              = ["mail.google.com"]
+        targets              = [".google.com",".googleapis.com",".gstatic.com",".googletagmanager.com",".google-analytics.com",".withgoogle.com"]
       }
     }
   }
