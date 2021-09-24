@@ -8,7 +8,7 @@ The terraform sets up a network with 2 private subnets and a public with a singl
 
 1. `terraform init`
 1. `terraform apply`
-1. Open up AWS UI and navigate to AppStream.
+1. Open up AWS UI and navigate to AppStream in us-west-2.
 1. Click `Fleets`
 1. Click `Create Fleet`
 1. Go through fleet creation wizard. Associate the fleet with the VPC created with our terraform and choose the private subnets for both subnets. (default sg is okay)
